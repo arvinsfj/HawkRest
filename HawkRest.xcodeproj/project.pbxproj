@@ -1,0 +1,485 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		21FF06341C61A9DF007806F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF06331C61A9DF007806F8 /* AppDelegate.swift */; };
+		21FF06361C61A9DF007806F8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF06351C61A9DF007806F8 /* ViewController.swift */; };
+		21FF06391C61A9DF007806F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21FF06371C61A9DF007806F8 /* Main.storyboard */; };
+		21FF063B1C61A9DF007806F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21FF063A1C61A9DF007806F8 /* Assets.xcassets */; };
+		21FF063E1C61A9DF007806F8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21FF063C1C61A9DF007806F8 /* LaunchScreen.storyboard */; };
+		21FF06491C61A9DF007806F8 /* HawkRestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF06481C61A9DF007806F8 /* HawkRestTests.swift */; };
+		21FF06811C677558007806F8 /* HKConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF06741C677558007806F8 /* HKConnection.swift */; };
+		21FF06821C677558007806F8 /* HKCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF06751C677558007806F8 /* HKCore.swift */; };
+		21FF06831C677558007806F8 /* HKHTTPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF06761C677558007806F8 /* HKHTTPHelper.swift */; };
+		21FF06841C677558007806F8 /* HKRest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF06771C677558007806F8 /* HKRest.swift */; };
+		21FF06851C677558007806F8 /* HKBodyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF06791C677558007806F8 /* HKBodyRequest.swift */; };
+		21FF06861C677558007806F8 /* HKHTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF067A1C677558007806F8 /* HKHTTPRequest.swift */; };
+		21FF06871C677558007806F8 /* HKParameterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF067B1C677558007806F8 /* HKParameterRequest.swift */; };
+		21FF06881C677558007806F8 /* HKBinaryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF067D1C677558007806F8 /* HKBinaryResponse.swift */; };
+		21FF06891C677558007806F8 /* HKHTTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF067E1C677558007806F8 /* HKHTTPResponse.swift */; };
+		21FF068A1C677558007806F8 /* HKJsonResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF067F1C677558007806F8 /* HKJsonResponse.swift */; };
+		21FF068B1C677558007806F8 /* HKStringResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF06801C677558007806F8 /* HKStringResponse.swift */; };
+		21FF068D1C677714007806F8 /* asd.png in Resources */ = {isa = PBXBuildFile; fileRef = 21FF068C1C677714007806F8 /* asd.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		21FF06451C61A9DF007806F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21FF06281C61A9DF007806F8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 21FF062F1C61A9DF007806F8;
+			remoteInfo = HawkRest;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		21FF06301C61A9DF007806F8 /* HawkRest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HawkRest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		21FF06331C61A9DF007806F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		21FF06351C61A9DF007806F8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		21FF06381C61A9DF007806F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		21FF063A1C61A9DF007806F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		21FF063D1C61A9DF007806F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		21FF063F1C61A9DF007806F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		21FF06441C61A9DF007806F8 /* HawkRestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HawkRestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		21FF06481C61A9DF007806F8 /* HawkRestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HawkRestTests.swift; sourceTree = "<group>"; };
+		21FF064A1C61A9DF007806F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		21FF06741C677558007806F8 /* HKConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKConnection.swift; sourceTree = "<group>"; };
+		21FF06751C677558007806F8 /* HKCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKCore.swift; sourceTree = "<group>"; };
+		21FF06761C677558007806F8 /* HKHTTPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKHTTPHelper.swift; sourceTree = "<group>"; };
+		21FF06771C677558007806F8 /* HKRest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKRest.swift; sourceTree = "<group>"; };
+		21FF06791C677558007806F8 /* HKBodyRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKBodyRequest.swift; sourceTree = "<group>"; };
+		21FF067A1C677558007806F8 /* HKHTTPRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKHTTPRequest.swift; sourceTree = "<group>"; };
+		21FF067B1C677558007806F8 /* HKParameterRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKParameterRequest.swift; sourceTree = "<group>"; };
+		21FF067D1C677558007806F8 /* HKBinaryResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKBinaryResponse.swift; sourceTree = "<group>"; };
+		21FF067E1C677558007806F8 /* HKHTTPResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKHTTPResponse.swift; sourceTree = "<group>"; };
+		21FF067F1C677558007806F8 /* HKJsonResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKJsonResponse.swift; sourceTree = "<group>"; };
+		21FF06801C677558007806F8 /* HKStringResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKStringResponse.swift; sourceTree = "<group>"; };
+		21FF068C1C677714007806F8 /* asd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = asd.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		21FF062D1C61A9DF007806F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21FF06411C61A9DF007806F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		21FF06271C61A9DF007806F8 = {
+			isa = PBXGroup;
+			children = (
+				21FF06321C61A9DF007806F8 /* HawkRest */,
+				21FF06471C61A9DF007806F8 /* HawkRestTests */,
+				21FF06311C61A9DF007806F8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		21FF06311C61A9DF007806F8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				21FF06301C61A9DF007806F8 /* HawkRest.app */,
+				21FF06441C61A9DF007806F8 /* HawkRestTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		21FF06321C61A9DF007806F8 /* HawkRest */ = {
+			isa = PBXGroup;
+			children = (
+				21FF06721C677558007806F8 /* HawkRest */,
+				21FF06331C61A9DF007806F8 /* AppDelegate.swift */,
+				21FF06351C61A9DF007806F8 /* ViewController.swift */,
+				21FF06371C61A9DF007806F8 /* Main.storyboard */,
+				21FF063A1C61A9DF007806F8 /* Assets.xcassets */,
+				21FF063C1C61A9DF007806F8 /* LaunchScreen.storyboard */,
+				21FF063F1C61A9DF007806F8 /* Info.plist */,
+				21FF068C1C677714007806F8 /* asd.png */,
+			);
+			path = HawkRest;
+			sourceTree = "<group>";
+		};
+		21FF06471C61A9DF007806F8 /* HawkRestTests */ = {
+			isa = PBXGroup;
+			children = (
+				21FF06481C61A9DF007806F8 /* HawkRestTests.swift */,
+				21FF064A1C61A9DF007806F8 /* Info.plist */,
+			);
+			path = HawkRestTests;
+			sourceTree = "<group>";
+		};
+		21FF06721C677558007806F8 /* HawkRest */ = {
+			isa = PBXGroup;
+			children = (
+				21FF06731C677558007806F8 /* Core */,
+				21FF06781C677558007806F8 /* Request */,
+				21FF067C1C677558007806F8 /* Response */,
+			);
+			path = HawkRest;
+			sourceTree = "<group>";
+		};
+		21FF06731C677558007806F8 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				21FF06771C677558007806F8 /* HKRest.swift */,
+				21FF06751C677558007806F8 /* HKCore.swift */,
+				21FF06761C677558007806F8 /* HKHTTPHelper.swift */,
+				21FF06741C677558007806F8 /* HKConnection.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		21FF06781C677558007806F8 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				21FF067A1C677558007806F8 /* HKHTTPRequest.swift */,
+				21FF06791C677558007806F8 /* HKBodyRequest.swift */,
+				21FF067B1C677558007806F8 /* HKParameterRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		21FF067C1C677558007806F8 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				21FF067E1C677558007806F8 /* HKHTTPResponse.swift */,
+				21FF067D1C677558007806F8 /* HKBinaryResponse.swift */,
+				21FF067F1C677558007806F8 /* HKJsonResponse.swift */,
+				21FF06801C677558007806F8 /* HKStringResponse.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		21FF062F1C61A9DF007806F8 /* HawkRest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 21FF064D1C61A9DF007806F8 /* Build configuration list for PBXNativeTarget "HawkRest" */;
+			buildPhases = (
+				21FF062C1C61A9DF007806F8 /* Sources */,
+				21FF062D1C61A9DF007806F8 /* Frameworks */,
+				21FF062E1C61A9DF007806F8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HawkRest;
+			productName = HawkRest;
+			productReference = 21FF06301C61A9DF007806F8 /* HawkRest.app */;
+			productType = "com.apple.product-type.application";
+		};
+		21FF06431C61A9DF007806F8 /* HawkRestTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 21FF06501C61A9DF007806F8 /* Build configuration list for PBXNativeTarget "HawkRestTests" */;
+			buildPhases = (
+				21FF06401C61A9DF007806F8 /* Sources */,
+				21FF06411C61A9DF007806F8 /* Frameworks */,
+				21FF06421C61A9DF007806F8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				21FF06461C61A9DF007806F8 /* PBXTargetDependency */,
+			);
+			name = HawkRestTests;
+			productName = HawkRestTests;
+			productReference = 21FF06441C61A9DF007806F8 /* HawkRestTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		21FF06281C61A9DF007806F8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = arvin;
+				TargetAttributes = {
+					21FF062F1C61A9DF007806F8 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					21FF06431C61A9DF007806F8 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 21FF062F1C61A9DF007806F8;
+					};
+				};
+			};
+			buildConfigurationList = 21FF062B1C61A9DF007806F8 /* Build configuration list for PBXProject "HawkRest" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 21FF06271C61A9DF007806F8;
+			productRefGroup = 21FF06311C61A9DF007806F8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				21FF062F1C61A9DF007806F8 /* HawkRest */,
+				21FF06431C61A9DF007806F8 /* HawkRestTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		21FF062E1C61A9DF007806F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21FF063E1C61A9DF007806F8 /* LaunchScreen.storyboard in Resources */,
+				21FF063B1C61A9DF007806F8 /* Assets.xcassets in Resources */,
+				21FF068D1C677714007806F8 /* asd.png in Resources */,
+				21FF06391C61A9DF007806F8 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21FF06421C61A9DF007806F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		21FF062C1C61A9DF007806F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21FF06891C677558007806F8 /* HKHTTPResponse.swift in Sources */,
+				21FF06361C61A9DF007806F8 /* ViewController.swift in Sources */,
+				21FF06851C677558007806F8 /* HKBodyRequest.swift in Sources */,
+				21FF068B1C677558007806F8 /* HKStringResponse.swift in Sources */,
+				21FF068A1C677558007806F8 /* HKJsonResponse.swift in Sources */,
+				21FF06861C677558007806F8 /* HKHTTPRequest.swift in Sources */,
+				21FF06341C61A9DF007806F8 /* AppDelegate.swift in Sources */,
+				21FF06841C677558007806F8 /* HKRest.swift in Sources */,
+				21FF06811C677558007806F8 /* HKConnection.swift in Sources */,
+				21FF06881C677558007806F8 /* HKBinaryResponse.swift in Sources */,
+				21FF06871C677558007806F8 /* HKParameterRequest.swift in Sources */,
+				21FF06831C677558007806F8 /* HKHTTPHelper.swift in Sources */,
+				21FF06821C677558007806F8 /* HKCore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21FF06401C61A9DF007806F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21FF06491C61A9DF007806F8 /* HawkRestTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		21FF06461C61A9DF007806F8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 21FF062F1C61A9DF007806F8 /* HawkRest */;
+			targetProxy = 21FF06451C61A9DF007806F8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		21FF06371C61A9DF007806F8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				21FF06381C61A9DF007806F8 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		21FF063C1C61A9DF007806F8 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				21FF063D1C61A9DF007806F8 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		21FF064B1C61A9DF007806F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		21FF064C1C61A9DF007806F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		21FF064E1C61A9DF007806F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = HawkRest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.arvin.HawkRest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		21FF064F1C61A9DF007806F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = HawkRest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.arvin.HawkRest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		21FF06511C61A9DF007806F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = HawkRestTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.arvin.HawkRestTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HawkRest.app/HawkRest";
+			};
+			name = Debug;
+		};
+		21FF06521C61A9DF007806F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = HawkRestTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.arvin.HawkRestTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HawkRest.app/HawkRest";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		21FF062B1C61A9DF007806F8 /* Build configuration list for PBXProject "HawkRest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21FF064B1C61A9DF007806F8 /* Debug */,
+				21FF064C1C61A9DF007806F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		21FF064D1C61A9DF007806F8 /* Build configuration list for PBXNativeTarget "HawkRest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21FF064E1C61A9DF007806F8 /* Debug */,
+				21FF064F1C61A9DF007806F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		21FF06501C61A9DF007806F8 /* Build configuration list for PBXNativeTarget "HawkRestTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21FF06511C61A9DF007806F8 /* Debug */,
+				21FF06521C61A9DF007806F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 21FF06281C61A9DF007806F8 /* Project object */;
+}
