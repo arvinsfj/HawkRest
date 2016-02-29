@@ -13,7 +13,7 @@ typealias StringResponse = (stringResponse: HKStringResponse, error: NSError?) -
 typealias BinaryResponse = (binaryResponse: HKBinaryResponse, error: NSError?) -> Void;
 typealias JsonResponse = (jsonResponse: HKJsonResponse, error: NSError?) -> Void;
 
-class HKCore {
+class HKCoreBase {
     //base properties
     var headers: [String:String]? = nil;
     var url: String? = nil;
@@ -41,42 +41,21 @@ class HKCore {
         }
         self.headers = lowerCaseHeaders;
     }
+}
+
+class HKCore : HKCoreBase {
     
     init(httpMethod: HKHTTPMethod?, url: String?, headers: [String:String]?, username: String?, password: String?, parameters: [String:AnyObject]?)
     {
         //
-        self.httpMethod = httpMethod;
-        self.url = url != nil ? url : "";
-        self.username = username;
-        self.password = password;
-        
-        var lowerCaseHeaders = [String:String]();
-        if let headersTmp = headers {
-            for (key, value) in headersTmp {
-                lowerCaseHeaders[key.lowercaseString] = value;
-            }
-        }
-        self.headers = lowerCaseHeaders;
-        //
+        super.init(httpMethod: httpMethod, url: url, headers: headers, username: username, password: password);
         self.parameters = parameters;
     }
     
     init(httpMethod: HKHTTPMethod?, url: String?, headers: [String:String]?, username: String?, password: String?, body: NSData?)
     {
         //
-        self.httpMethod = httpMethod;
-        self.url = url != nil ? url : "";
-        self.username = username;
-        self.password = password;
-        
-        var lowerCaseHeaders = [String:String]();
-        if let headersTmp = headers {
-            for (key, value) in headersTmp {
-                lowerCaseHeaders[key.lowercaseString] = value;
-            }
-        }
-        self.headers = lowerCaseHeaders;
-        //
+        super.init(httpMethod: httpMethod, url: url, headers: headers, username: username, password: password);
         self.body = body;
     }
     
