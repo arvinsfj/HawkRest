@@ -11,7 +11,7 @@ class HKHTTPHelper {
     //
     private static let BOUNDARY = "-------------------------1d3668e64798b0d2df075cc65cb37acd";
     
-    private class func dictToStr(parameters: [String:AnyObject]) -> String
+    private class func dict2str(parameters: [String:AnyObject]) -> String
     {
         func encode(uri: String) -> String
         {
@@ -66,7 +66,7 @@ class HKHTTPHelper {
                 }else{
                     finalUrl.appendString("&");
                 }
-                finalUrl.appendString(dictToStr(parameters!));
+                finalUrl.appendString(dict2str(parameters!));
                 url = String(finalUrl);
             }
         }
@@ -102,7 +102,7 @@ class HKHTTPHelper {
                     body.appendData("\r\n--\(BOUNDARY)--\r\n".dataUsingEncoding(NSUTF8StringEncoding)!);
                 } else {
                     headers["content-type"] = "application/x-www-form-urlencoded";
-                    let querystring = dictToStr(parameters);
+                    let querystring = dict2str(parameters);
                     body = NSMutableData(data: querystring.dataUsingEncoding(NSUTF8StringEncoding)!);
                 }
             } else {
