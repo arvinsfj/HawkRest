@@ -87,7 +87,7 @@ class HKHTTPHelper {
                             let data = NSData(contentsOfFile: value.absoluteString);
                             if (data != nil && data?.length > 0){
                                 body.appendData("\r\n--\(BOUNDARY)--\r\n".dataUsingEncoding(NSUTF8StringEncoding)!);
-                                let filename = value.lastPathComponent;
+                                let filename = (value.lastPathComponent)!;
                                 body.appendData("Content-Disposition: form-data; name='\(key)'; filename='\(filename)'\r\n".dataUsingEncoding(NSUTF8StringEncoding)!);
                                 body.appendData("Content-Length: \(data!.length)\r\n\r\n".dataUsingEncoding(NSUTF8StringEncoding)!);
                                 body.appendData(data!);
