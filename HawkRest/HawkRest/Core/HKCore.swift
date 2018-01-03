@@ -9,9 +9,9 @@
 import Foundation
 
 
-typealias StringResponse = (stringResponse: HKStringResponse, error: NSError?) -> Void;
-typealias BinaryResponse = (binaryResponse: HKBinaryResponse, error: NSError?) -> Void;
-typealias JsonResponse = (jsonResponse: HKJsonResponse, error: NSError?) -> Void;
+typealias StringResponse = (_ stringResponse: HKStringResponse, _ error: NSError?) -> Void;
+typealias BinaryResponse = (_ binaryResponse: HKBinaryResponse, _ error: NSError?) -> Void;
+typealias JsonResponse = (_ jsonResponse: HKJsonResponse, _ error: NSError?) -> Void;
 
 class HKCoreBase {
     //base properties
@@ -36,7 +36,7 @@ class HKCoreBase {
         var lowerCaseHeaders = [String:String]();
         if let headersTmp = headers {
             for (key, value) in headersTmp {
-                lowerCaseHeaders[key.lowercaseString] = value;
+                lowerCaseHeaders[key.lowercased()] = value;
             }
         }
         self.headers = lowerCaseHeaders;
@@ -64,51 +64,51 @@ class HKCore : HKCoreBase {
     func asString() -> HKStringResponse
     {
         var error: NSError? = nil;
-        return self.asString(&error);
+        return self.asString(error: &error);
     }
-    func asString(inout error: NSError?) -> HKStringResponse
+    func asString( error: inout NSError?) -> HKStringResponse
     {
-        let response = HKHTTPHelper.requestSync(self, error: &error);
+        let response = HKHTTPHelper.requestSync(request: self, error: &error);
         return HKStringResponse(httpResponse: response);
     }
-    func asStringAsync(response: StringResponse) -> HKConnection
+    func asStringAsync(response: @escaping StringResponse) -> HKConnection
     {
-        return HKHTTPHelper.requestAsync(self, handler: {(resp: HKHTTPResponse, error: NSError?) in
-            response(stringResponse: HKStringResponse(httpResponse: resp), error: error);
+        return HKHTTPHelper.requestAsync(request: self, handler: {(resp: HKHTTPResponse, error: NSError?) in
+            response(HKStringResponse(httpResponse: resp), error);
         });
     }
     //
     func asBinary() -> HKBinaryResponse
     {
         var error: NSError? = nil;
-        return self.asBinary(&error);
+        return self.asBinary(error: &error);
     }
-    func asBinary(inout error: NSError?) -> HKBinaryResponse
+    func asBinary( error: inout NSError?) -> HKBinaryResponse
     {
-        let response = HKHTTPHelper.requestSync(self, error: &error);
+        let response = HKHTTPHelper.requestSync(request: self, error: &error);
         return HKBinaryResponse(httpResponse: response);
     }
-    func asBinaryAsync(response: BinaryResponse) -> HKConnection
+    func asBinaryAsync(response: @escaping BinaryResponse) -> HKConnection
     {
-        return HKHTTPHelper.requestAsync(self, handler: {(resp: HKHTTPResponse, error: NSError?) in
-            response(binaryResponse: HKBinaryResponse(httpResponse: resp), error: error);
+        return HKHTTPHelper.requestAsync(request: self, handler: {(resp: HKHTTPResponse, error: NSError?) in
+            response(HKBinaryResponse(httpResponse: resp), error);
         });
     }
     //
     func asJson() -> HKJsonResponse
     {
         var error: NSError? = nil;
-        return self.asJson(&error);
+        return self.asJson(error: &error);
     }
-    func asJson(inout error: NSError?) -> HKJsonResponse
+    func asJson( error: inout NSError?) -> HKJsonResponse
     {
-        let response = HKHTTPHelper.requestSync(self, error: &error);
+        let response = HKHTTPHelper.requestSync(request: self, error: &error);
         return HKJsonResponse(httpResponse: response);
     }
-    func asJsonAsync(response: JsonResponse) -> HKConnection
+    func asJsonAsync(response: @escaping JsonResponse) -> HKConnection
     {
-        return HKHTTPHelper.requestAsync(self, handler: {(resp: HKHTTPResponse, error: NSError?) in
-            response(jsonResponse: HKJsonResponse(httpResponse: resp), error: error);
+        return HKHTTPHelper.requestAsync(request: self, handler: {(resp: HKHTTPResponse, error: NSError?) in
+            response(HKJsonResponse(httpResponse: resp), error);
         });
     }
 }

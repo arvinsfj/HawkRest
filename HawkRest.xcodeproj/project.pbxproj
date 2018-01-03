@@ -10,7 +10,6 @@
 		21FF06341C61A9DF007806F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF06331C61A9DF007806F8 /* AppDelegate.swift */; };
 		21FF06361C61A9DF007806F8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF06351C61A9DF007806F8 /* ViewController.swift */; };
 		21FF06391C61A9DF007806F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21FF06371C61A9DF007806F8 /* Main.storyboard */; };
-		21FF063B1C61A9DF007806F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21FF063A1C61A9DF007806F8 /* Assets.xcassets */; };
 		21FF063E1C61A9DF007806F8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21FF063C1C61A9DF007806F8 /* LaunchScreen.storyboard */; };
 		21FF06491C61A9DF007806F8 /* HawkRestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF06481C61A9DF007806F8 /* HawkRestTests.swift */; };
 		21FF06811C677558007806F8 /* HKConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF06741C677558007806F8 /* HKConnection.swift */; };
@@ -42,7 +41,6 @@
 		21FF06331C61A9DF007806F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		21FF06351C61A9DF007806F8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		21FF06381C61A9DF007806F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		21FF063A1C61A9DF007806F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		21FF063D1C61A9DF007806F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		21FF063F1C61A9DF007806F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21FF06441C61A9DF007806F8 /* HawkRestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HawkRestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,7 +103,6 @@
 				21FF06331C61A9DF007806F8 /* AppDelegate.swift */,
 				21FF06351C61A9DF007806F8 /* ViewController.swift */,
 				21FF06371C61A9DF007806F8 /* Main.storyboard */,
-				21FF063A1C61A9DF007806F8 /* Assets.xcassets */,
 				21FF063C1C61A9DF007806F8 /* LaunchScreen.storyboard */,
 				21FF063F1C61A9DF007806F8 /* Info.plist */,
 				21FF068C1C677714007806F8 /* asd.png */,
@@ -246,7 +243,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				21FF063E1C61A9DF007806F8 /* LaunchScreen.storyboard in Resources */,
-				21FF063B1C61A9DF007806F8 /* Assets.xcassets in Resources */,
 				21FF068D1C677714007806F8 /* asd.png in Resources */,
 				21FF06391C61A9DF007806F8 /* Main.storyboard in Resources */,
 			);
@@ -411,6 +407,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.arvin.HawkRest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -422,6 +419,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.arvin.HawkRest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

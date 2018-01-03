@@ -22,7 +22,7 @@ class HKJsonResponse: HKHTTPResponse {
         var json: AnyObject? = nil;
         if let data = httpResponse.rawBody {
             do {
-                json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableLeaves);
+                json = try JSONSerialization.jsonObject(with: data as Data, options: JSONSerialization.ReadingOptions.mutableLeaves) as AnyObject;
             }catch{}
         }
         self.body = json;

@@ -11,6 +11,6 @@ import Foundation
 class HKHTTPResponse {
     //
     var code: Int? = 0;
-    var headers: [NSObject : AnyObject]? = nil;
+    var headers: [AnyHashable : Any]? = nil;
     var rawBody: NSData? = nil;
 }

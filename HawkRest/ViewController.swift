@@ -16,11 +16,11 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         testSyncHEADRequest();
         testAsyncHEADRequest();
-        testSyncGETRequest();
+        testSyncGETRequest();/*
         testAsyncGETRequest();
         testSyncPOSTRequest();
         testAsyncPOSTRequest();
-        testSyncPOSTEntityRequest();
+        testSyncPOSTEntityRequest();*/
     }
     
     override func didReceiveMemoryWarning() {
@@ -33,36 +33,36 @@ class ViewController: UIViewController {
         var error: NSError? = nil;
         let headers = ["accept": "application/json"];
         let parameters = ["parameter": "value", "foo": "bar"];
-        let resp = HKRest.head({ (request: HKParameterRequest) in
+        let resp = HKRest.head(config: { (request: HKParameterRequest) in
             request.url = "http://httpbin.org/headers";
             request.headers = headers;
-            request.parameters = parameters;
-        }).asString(&error);
-        print(resp.code);
-        print(resp.headers);
-        print(resp.rawBody);
-        print(resp.body);
-        print(error);
-        self.testShowLabel.text = "\(resp.code)";
+            request.parameters = parameters as [String : AnyObject];
+        }).asString(error: &error);
+        print(resp.code ?? "");
+        print(resp.headers ?? "");
+        print(resp.rawBody ?? "");
+        print(resp.body ?? "");
+        print(error ?? "");
+        self.testShowLabel.text = "\(String(describing: resp.code))";
     }
     
     func testAsyncHEADRequest(){
         let headers = ["accept": "application/json"];
         let parameters = ["parameter": "value", "foo": "bar"];
-        HKRest.head({ (request: HKParameterRequest) in
+        HKRest.head(config: { (request: HKParameterRequest) in
             request.url = "http://httpbin.org/headers";
             request.headers = headers;
-            request.parameters = parameters;
-        }).asStringAsync({ (resp: HKStringResponse, error: NSError?) in
-            print(resp.code);
-            print(resp.headers);
-            print(resp.rawBody);
-            print(resp.body);
-            print(error);
-            dispatch_sync(dispatch_get_main_queue(), {
-                self.testShowLabel.text = "\(resp.code)";
-            });
-        });
+            request.parameters = parameters as [String : AnyObject];
+        }).asStringAsync{ (resp: HKStringResponse, error: NSError?) in
+            print(resp.code ?? "");
+            print(resp.headers ?? "");
+            print(resp.rawBody ?? "");
+            print(resp.body ?? "");
+            print(error ?? "");
+            DispatchQueue.main.async {
+                self.testShowLabel.text = "\(resp.code ?? -1000)";
+            }
+        };
     }
     
     //GET
@@ -70,33 +70,33 @@ class ViewController: UIViewController {
         var error: NSError? = nil;
         let headers = ["accept": "application/json"];
         let parameters = ["parameter": "value", "foo": "bar"];
-        let resp = HKRest.get({ (request: HKParameterRequest) in
+        let resp = HKRest.get(config: { (request: HKParameterRequest) in
             request.url = "http://httpbin.org/get";
             request.headers = headers;
-            request.parameters = parameters;
-        }).asString(&error);
-        print(resp.code);
-        print(resp.headers);
-        print(resp.rawBody);
-        print(resp.body);
-        print(error);
-        self.testShowLabel.text = "\(resp.code)";
+            request.parameters = parameters as [String : AnyObject];
+        }).asString(error: &error);
+        print(resp.code ?? "");
+        print(resp.headers ?? "");
+        print(resp.rawBody ?? "");
+        print(resp.body ?? "");
+        print(error ?? "");
+        self.testShowLabel.text = "\(resp.code ?? -1000)";
     }
     
     func testAsyncGETRequest(){
-        HKRest.get({ (request: HKParameterRequest) in
+        HKRest.get(config: { (request: HKParameterRequest) in
             request.url = "http://httpbin.org/get";
             request.username = "";
             request.password = "";
-        }).asStringAsync({ (resp: HKStringResponse, error: NSError?) in
+        }).asStringAsync(response: { (resp: HKStringResponse, error: NSError?) in
             print(resp.code);
             print(resp.headers);
             print(resp.rawBody);
             print(resp.body);
             print(error);
-            dispatch_sync(dispatch_get_main_queue(), {
+            DispatchQueue.main.sync {
                 self.testShowLabel.text = "\(resp.code)";
-            });
+            }
         });
     }
     
@@ -104,14 +104,14 @@ class ViewController: UIViewController {
     func testSyncPOSTRequest(){
         var error: NSError? = nil;
         let headers = ["accept": "application/json"];
-        let file = NSURL(string: NSBundle.mainBundle().pathForResource("asd", ofType: "png")!)!;
-        let parameters = ["parameter": "value", "file": file];
+        let file = NSURL(string: Bundle.main.path(forResource: "asd", ofType: "png")!)!;
+        let parameters = ["parameter": "value", "file": file] as [String : Any];
         
-        let resp = HKRest.post({ (request: HKParameterRequest) in
+        let resp = HKRest.post(config: { (request: HKParameterRequest) in
             request.url = "http://httpbin.org/post";
             request.headers = headers;
-            request.parameters = parameters;
-        }).asJson(&error);
+            request.parameters = parameters as [String : AnyObject];
+        }).asJson(error: &error);
         
         print(resp.code);
         print(resp.headers);
@@ -125,22 +125,22 @@ class ViewController: UIViewController {
         let headers = ["accept": "application/json"];
         let parameters = ["parameter": "value", "foo": "bar"];
         
-        HKRest.post({ (request: HKParameterRequest) in
+        HKRest.post(config: { (request: HKParameterRequest) in
             request.url = "http://httpbin.org/post";
             request.headers = headers;
-            request.parameters = parameters;
+            request.parameters = parameters as [String : AnyObject];
             request.username = "";
             request.password = "";
             
-        }).asJsonAsync({ (resp: HKJsonResponse, error: NSError?) in
+        }).asJsonAsync(response: { (resp: HKJsonResponse, error: NSError?) in
             print(resp.code);
             print(resp.headers);
             print(resp.rawBody);
             print(resp.body);
             print(error);
-            dispatch_sync(dispatch_get_main_queue(), {
+            DispatchQueue.main.sync {
                 self.testShowLabel.text = "\(resp.code)";
-            });
+            }
         });
     }
     
@@ -149,20 +149,20 @@ class ViewController: UIViewController {
         let headers = ["accept": "application/json"];
         let parameters = ["parameter": "value", "foo": "bar"];
         
-        let resp = HKRest.post({ (request: HKBodyRequest) in
+        let resp = HKRest.post(config: { (request: HKBodyRequest) in
             request.url = "http://httpbin.org/post";
             request.headers = headers;
             do {
-                request.body = try NSJSONSerialization.dataWithJSONObject(parameters, options: NSJSONWritingOptions.init(rawValue: 0));
+                request.body = try JSONSerialization.data(withJSONObject: parameters, options: JSONSerialization.WritingOptions.init(rawValue: 0)) as NSData;
             } catch {}
             
-        }).asJson(&error);
+        }).asJson(error: &error);
         
         print(resp.code);
         print(resp.headers);
         print(resp.rawBody);
         print(resp.body);
-        print(error);
+        print(error ?? "");
         self.testShowLabel.text = "\(resp.code)";
     }
     

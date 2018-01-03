@@ -18,6 +18,6 @@ class HKStringResponse: HKHTTPResponse {
         self.code = httpResponse.code;
         self.headers = httpResponse.headers;
         self.rawBody = httpResponse.rawBody;
-        self.body = httpResponse.rawBody != nil ? String(data: httpResponse.rawBody!, encoding: NSUTF8StringEncoding) : nil;
+        self.body = httpResponse.rawBody != nil ? String(data: httpResponse.rawBody! as Data, encoding: String.Encoding.utf8) : nil;
     }
 }

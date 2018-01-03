@@ -8,7 +8,7 @@
 
 import Foundation
 
-typealias AsyncHandler = (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void;
+typealias AsyncHandler = (_ response: URLResponse?, _ data: NSData?, _ error: NSError?) -> Void;
 
 class HKConnection: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegate {
     //
@@ -17,7 +17,7 @@ class HKConnection: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelega
     
     //
     private var connection: NSURLConnection? = nil;
-    private var response: NSURLResponse? = nil;
+    private var response: URLResponse? = nil;
     private var responseData: NSMutableData? = nil;
     
     deinit{
@@ -25,7 +25,7 @@ class HKConnection: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelega
     }
     
     //
-    class func sendAsyncRequest(request: NSURLRequest, completionHandler: AsyncHandler) -> HKConnection
+    class func sendAsyncRequest(request: NSURLRequest, completionHandler: @escaping AsyncHandler) -> HKConnection
     {
         let result = HKConnection();
         result.request = request;
@@ -37,13 +37,13 @@ class HKConnection: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelega
     private func start() -> Void
     {
         //
-        connection = NSURLConnection(request: request!, delegate: self, startImmediately: false);
-        connection?.scheduleInRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode);
+        connection = NSURLConnection(request: request! as URLRequest, delegate: self, startImmediately: false);
+        connection?.schedule(in: RunLoop.main, forMode: RunLoopMode.defaultRunLoopMode);
         if (connection != nil){
             connection?.start();
         }else{
             if (completionHandler != nil){
-                completionHandler!(response: nil,data: nil,error: nil);
+                completionHandler!(nil,nil,nil);
                 completionHandler = nil;
             }
         }
@@ -57,47 +57,55 @@ class HKConnection: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelega
     }
     
     //mark connection
-    func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse){
+    private func connection(connection: NSURLConnection, didReceiveResponse response: URLResponse){
         self.response = response;
     }
     
-    func connection(connection: NSURLConnection, didReceiveData data: NSData){
+    private func connection(connection: NSURLConnection, didReceiveData data: NSData){
         if let respData = responseData {
-            respData.appendData(data);
+            respData.append(data as Data);
         }else{
-            responseData = NSMutableData(data: data);
+            responseData = NSMutableData(data: data as Data);
         }
     }
     
-    func connectionDidFinishLoading(connection: NSURLConnection){
+    func connectionDidFinishLoading(_ connection: NSURLConnection){
         self.connection = nil;
         if let handler = completionHandler {
             completionHandler = nil;
-            dispatch_async(dispatch_get_global_queue(0, 0), {
-                handler(response: self.response, data: self.responseData, error: nil);
-            });
+            if #available(iOS 8.0, *) {
+                DispatchQueue.global().async {
+                    handler(self.response, self.responseData, nil);
+                }
+            } else {
+                // Fallback on earlier versions
+            };
         }
     }
     
-    func connection(connection: NSURLConnection, didFailWithError error: NSError) {
+    func connection(_ connection: NSURLConnection, didFailWithError error: Error) {
         self.connection = nil;
         if let handler = completionHandler {
             completionHandler = nil;
-            dispatch_async(dispatch_get_global_queue(0, 0), {
-                handler(response: self.response, data: self.responseData, error: error);
-            });
+            if #available(iOS 8.0, *) {
+                DispatchQueue.global().async {
+                    handler(self.response, self.responseData, error as NSError );
+                }
+            } else {
+                // Fallback on earlier versions
+            };
         }
     }
     
 #if true
     //TARGET_IPHONE_SIMULATOR
-    func connection(connection: NSURLConnection, canAuthenticateAgainstProtectionSpace protectionSpace: NSURLProtectionSpace) -> Bool
+    func connection(_ connection: NSURLConnection, canAuthenticateAgainstProtectionSpace protectionSpace: URLProtectionSpace) -> Bool
     {
         return protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust;
     }
-    func connection(connection: NSURLConnection, didReceiveAuthenticationChallenge challenge: NSURLAuthenticationChallenge)
+    private func connection(connection: NSURLConnection, didReceiveAuthenticationChallenge challenge: URLAuthenticationChallenge)
     {
-        challenge.sender?.useCredential(NSURLCredential(trust: challenge.protectionSpace.serverTrust!), forAuthenticationChallenge: challenge);
+        challenge.sender?.use(URLCredential(trust: challenge.protectionSpace.serverTrust!), for: challenge);
     }
     //TARGET_IPHONE_SIMULATOR
 #endif

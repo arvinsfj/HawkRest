@@ -18,17 +18,17 @@ class HKHTTPHelper {
             return
                 CFURLCreateStringByAddingPercentEscapes(
                 kCFAllocatorDefault,
-                uri,
+                uri as CFString,
                 nil,
-                "!*'();:@&=+$,/?%#[]",
+                "!*'();:@&=+$,/?%#[]" as CFString,
                 CFStringBuiltInEncodings.UTF8.rawValue) as String;
         }
         //
         var result = "";
         var firstParameter: Bool = true;
         for (key, value) in parameters {
-            if (!(value.isKindOfClass(NSURL.self))) {
-                let parameter = "\(encode(key))=\(encode(value as! String))";
+            if (!(value.isKind(of: NSURL.self))) {
+                let parameter = "\(encode(uri: key))=\(encode(uri: value as! String))";
                 if (firstParameter) {
                     result = parameter;
                     firstParameter = false;
@@ -43,7 +43,7 @@ class HKHTTPHelper {
     private class func hasBinary(parameters: [String:AnyObject]) -> Bool
     {
         for (_, value) in parameters {
-            if (value.isKindOfClass(NSURL.self)){
+            if (value.isKind(of: NSURL.self)){
                 return true;
             }
         }
@@ -58,20 +58,21 @@ class HKHTTPHelper {
         
         if (httpMethod == .GET || httpMethod == .HEAD){
             let simpleRequest = request;
-            let parameters = simpleRequest.parameters;
-            if (parameters?.count > 0){
-                let finalUrl = NSMutableString(string: url);
-                if(url.rangeOfString("?") == nil){
-                    finalUrl.appendString("?");
-                }else{
-                    finalUrl.appendString("&");
+            if let parameters = simpleRequest.parameters {
+                if (parameters.count > 0){
+                    let finalUrl = NSMutableString(string: url);
+                    if(url.range(of: "?") == nil){
+                        finalUrl.append("?");
+                    }else{
+                        finalUrl.append("&");
+                    }
+                    finalUrl.append(dict2str(parameters: parameters));
+                    url = String(finalUrl);
                 }
-                finalUrl.appendString(dict2str(parameters!));
-                url = String(finalUrl);
             }
         }
         
-        let requestObj = NSMutableURLRequest(URL: NSURL(string: url)!, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: Double(HKRest.timeout()));
+        let requestObj = NSMutableURLRequest(url: URL(string: url)!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: Double(HKRest.timeout()));
         
         if (httpMethod != .GET && httpMethod != .HEAD) {
             // Add body
@@ -80,58 +81,58 @@ class HKHTTPHelper {
             if (requestWithBody.body == nil) {
                 // Has parameters
                 let parameters = requestWithBody.parameters != nil ? requestWithBody.parameters! : [String:AnyObject]();
-                if (hasBinary(parameters)) {
+                if (hasBinary(parameters: parameters)) {
                     headers["content-type"] = "multipart/form-data; boundary=\(BOUNDARY)";
                     for (key, value) in parameters {
-                        if (value.isKindOfClass(NSURL.self)){
-                            let data = NSData(contentsOfFile: value.absoluteString);
-                            if (data != nil && data?.length > 0){
-                                body.appendData("\r\n--\(BOUNDARY)--\r\n".dataUsingEncoding(NSUTF8StringEncoding)!);
+                        if (value.isKind(of: NSURL.self)){
+                            let data = NSData(contentsOfFile: (value as! NSURL).absoluteString!);
+                            if (data != nil && data!.length > 0){
+                                body.append("\r\n--\(BOUNDARY)--\r\n".data(using: String.Encoding.utf8)!);
                                 let filename = (value.lastPathComponent)!;
-                                body.appendData("Content-Disposition: form-data; name='\(key)'; filename='\(filename)'\r\n".dataUsingEncoding(NSUTF8StringEncoding)!);
-                                body.appendData("Content-Length: \(data!.length)\r\n\r\n".dataUsingEncoding(NSUTF8StringEncoding)!);
-                                body.appendData(data!);
+                                body.append("Content-Disposition: form-data; name='\(key)'; filename='\(filename)'\r\n".data(using: String.Encoding.utf8)!);
+                                body.append("Content-Length: \(data!.length)\r\n\r\n".data(using: String.Encoding.utf8)!);
+                                body.append(data! as Data);
                             }
                         } else {
-                            body.appendData("\r\n--\(BOUNDARY)--\r\n".dataUsingEncoding(NSUTF8StringEncoding)!);
-                            body.appendData("Content-Disposition: form-data; name='\(key)'\r\n\r\n".dataUsingEncoding(NSUTF8StringEncoding)!);
-                            body.appendData("\(value)".dataUsingEncoding(NSUTF8StringEncoding)!);
+                            body.append("\r\n--\(BOUNDARY)--\r\n".data(using: String.Encoding.utf8)!);
+                            body.append("Content-Disposition: form-data; name='\(key)'\r\n\r\n".data(using: String.Encoding.utf8)!);
+                            body.append("\(value)".data(using: String.Encoding.utf8)!);
                         }
                     }
                     // Close
-                    body.appendData("\r\n--\(BOUNDARY)--\r\n".dataUsingEncoding(NSUTF8StringEncoding)!);
+                    body.append("\r\n--\(BOUNDARY)--\r\n".data(using: String.Encoding.utf8)!);
                 } else {
                     headers["content-type"] = "application/x-www-form-urlencoded";
-                    let querystring = dict2str(parameters);
-                    body = NSMutableData(data: querystring.dataUsingEncoding(NSUTF8StringEncoding)!);
+                    let querystring = dict2str(parameters: parameters);
+                    body = NSMutableData(data: querystring.data(using: String.Encoding.utf8)!);
                 }
             } else {
                 // Has a body
-                body = NSMutableData(data: requestWithBody.body!);
+                body = NSMutableData(data: requestWithBody.body! as Data);
             }
-            requestObj.HTTPBody=body;
+            requestObj.httpBody=body as Data;
         }
         
         
         // Set method
         switch (httpMethod) {
         case .GET:
-            requestObj.HTTPMethod = "GET";
+            requestObj.httpMethod = "GET";
             break;
         case .POST:
-            requestObj.HTTPMethod = "POST";
+            requestObj.httpMethod = "POST";
             break;
         case .PUT:
-            requestObj.HTTPMethod = "PUT";
+            requestObj.httpMethod = "PUT";
             break;
         case .DELETE:
-            requestObj.HTTPMethod = "DELETE";
+            requestObj.httpMethod = "DELETE";
             break;
         case .PATCH:
-            requestObj.HTTPMethod = "PATCH";
+            requestObj.httpMethod = "PATCH";
             break;
         case .HEAD:
-            requestObj.HTTPMethod = "HEAD";
+            requestObj.httpMethod = "HEAD";
             break;
         }
         
@@ -140,7 +141,7 @@ class HKHTTPHelper {
         headers["accept-encoding"] = "gzip";
         
         // Add cookies to the headers
-        let cookies = NSHTTPCookie.requestHeaderFieldsWithCookies(NSHTTPCookieStorage.sharedHTTPCookieStorage().cookiesForURL(NSURL(string: url)!)!);
+        let cookies = HTTPCookie.requestHeaderFields(with: HTTPCookieStorage.shared.cookies(for: NSURL(string: url)! as URL)!);
         for (key, value) in cookies
         {
             headers[key] = value;
@@ -148,11 +149,9 @@ class HKHTTPHelper {
         
         // Basic Auth
         if (request.username != nil || request.password != nil) {
-            let user = (request.username == nil) ? "" : request.username;
-            let pass = (request.password == nil) ? "" : request.password;
-            let credentials = "\(user):\(pass)";
-            let credentialsData = credentials.dataUsingEncoding(NSUTF8StringEncoding)!;
-            let basicStr = credentialsData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength);
+            let credentials = "\(request.username ?? "")):\(request.password ?? "")";
+            let credentialsData = credentials.data(using: String.Encoding.utf8)!;
+            let basicStr = (credentialsData as NSData).base64EncodedData(options: NSData.Base64EncodingOptions.lineLength64Characters);
             let header = "Basic \(basicStr)";
             headers["authorization"] = header;
         }
@@ -169,9 +168,9 @@ class HKHTTPHelper {
         return requestObj;
     }
     
-    private class func getResponse(response: NSURLResponse?, data: NSData?) -> HKHTTPResponse
+    private class func getResponse(response: URLResponse?, data: NSData?) -> HKHTTPResponse
     {
-        let httpResponse =  response as? NSHTTPURLResponse;
+        let httpResponse =  response as? HTTPURLResponse;
         let resp = HKHTTPResponse();
         resp.code = httpResponse?.statusCode;
         resp.headers = httpResponse?.allHeaderFields;
@@ -179,28 +178,28 @@ class HKHTTPHelper {
         return resp;
     }
     
-    class func requestSync(request: HKCore, inout error: NSError?) -> HKHTTPResponse
+    class func requestSync(request: HKCore, error: inout NSError?) -> HKHTTPResponse
     {
-        let requestObj: NSMutableURLRequest = prepareRequest(request);
-        var response: NSURLResponse? = nil;
+        let requestObj: NSMutableURLRequest = prepareRequest(request: request);
+        var response: URLResponse? = nil;
         do{
-            let data = try NSURLConnection.sendSynchronousRequest(requestObj, returningResponse: &response);
-            return getResponse(response, data: data);
+            let data = try NSURLConnection.sendSynchronousRequest(requestObj as URLRequest, returning: &response);
+            return getResponse(response: response, data: data as NSData);
         }catch let err as NSError{
             print("\n\nError: \(err)");
             error = err;
-            return getResponse(response, data: nil);
+            return getResponse(response: response, data: nil);
         }
     }
     
-    class func requestAsync(request: HKCore, handler: ((HKHTTPResponse, NSError?) -> Void)) -> HKConnection
+    class func requestAsync(request: HKCore, handler: @escaping ((HKHTTPResponse, NSError?) -> Void)) -> HKConnection
     {
-        let requestObj: NSMutableURLRequest = prepareRequest(request);
-        let connection = HKConnection.sendAsyncRequest(requestObj, completionHandler: {(response: NSURLResponse?, data: NSData?, error: NSError?) in
+        let requestObj: NSMutableURLRequest = prepareRequest(request: request);
+        let connection = HKConnection.sendAsyncRequest(request: requestObj, completionHandler: {(response: URLResponse?, data: NSData?, error: NSError?) in
             if let _ = error {
                 print("\n\nError: \(error!)");
             }
-            let resp = getResponse(response, data: data);
+            let resp = getResponse(response: response, data: data);
             handler(resp, error);
         });
         return connection;
